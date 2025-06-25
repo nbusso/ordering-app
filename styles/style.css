@@ -90,19 +90,27 @@ ul {
     border-radius: 50%;
     border: 1px solid #8B8B8B;
     margin-left: auto;
+    color: grey;
     font-size: 32px;
     font-weight: 400;
     cursor: pointer;
 }
 
-.order-list h3 {
+.order-section {
+    padding-top: 50px;
+    /* display: none; */
+}
+
+.order-section h3 {
     font-size: 28px;
     font-weight: 400;
+    text-align: center;
 }
 
 .order-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 5px 0;
 }
 
@@ -110,9 +118,17 @@ ul {
     width: 200px;
 }
 
+.order-info span,
+.total-line {
+    font-size: 28px;
+    font-weight: 400;
+}
+
 .item-price {
     width: 50px;
     text-align: right;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .order-btn {
@@ -127,10 +143,29 @@ ul {
     cursor: pointer;
 }
 
+.total-line {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid grey;
+    display: flex;
+}
+
+.total-price {
+    display: inline-block;
+    margin-left: auto;
+}
+
+.complete-order-btn {
+    display: block;
+    margin-top: 53px;
+    padding: 18px 0;
+    width: 100%;
+}
+
 .modal {
     width: 524px;
     height: 542px;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     left: 0;

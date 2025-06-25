@@ -2,6 +2,7 @@ import { menuList } from "./data/menu.js";
 
 const menuListContainer = document.getElementById('menu-list')
 const orderListContainer = document.getElementById('order-list')
+const orderSection = document.getElementById('order-section')
 const orderTotalContainer = document.getElementById('order-total')
 const modalContainer = document.getElementById('modal')
 
@@ -50,6 +51,12 @@ function render() {
     }).join('')
    
     menuListContainer.innerHTML = menuHTML
+
+    if (orderedItems.length > 0) {
+        orderSection.style.visibility = "visible"
+    } else {
+        orderSection.style.visibility = "hidden"
+    }
 }
 
 
@@ -80,13 +87,13 @@ function orderRender() {
     // order price
     const orderPrice = orderedItems.reduce((total, item) => (item.price * item.orderCount) + total, 0)
     orderTotalContainer.innerHTML = `
-        <hr>
         <div class="total-line">
             <span>Total price:</span>
-            <span>$${orderPrice}</span>
+            <span class="total-price">$${orderPrice}</span>
         </div>
     `
-    console.log(orderPrice)
+    
+    render()
 }
 
 function addItem(itemFromMenu) {
