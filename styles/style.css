@@ -44,17 +44,24 @@ ul {
 }
 
 .item-card {
+    padding: 55px 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    border-bottom: 1px solid #D2D2D2;
+}
+
+.item-card:first-child {
+    padding-top: 0;
 }
 
 .item-image-container {
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 .item-image-container span {
     font-size: 70px;
+    margin-left: -15px;
 }
 
 .item-description-container {
@@ -72,12 +79,25 @@ ul {
     color: #8B8B8B;
 }
 
-.item-price {
+.item-card-price {
     margin-top: auto;
+    font-size: 20px;
 }
 
 .item-add-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #8B8B8B;
     margin-left: auto;
+    font-size: 32px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.order-list h3 {
+    font-size: 28px;
+    font-weight: 400;
 }
 
 .order-item {
@@ -93,6 +113,18 @@ ul {
 .item-price {
     width: 50px;
     text-align: right;
+}
+
+.order-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 10px;
+    padding: 4px;
+    text-align: center;
+    border-radius: 50%;
+    color: grey;
+    border: 1px solid #8B8B8B;
+    cursor: pointer;
 }
 
 .modal {

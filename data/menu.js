@@ -9,7 +9,7 @@ export const menuList = [
     },
     {
         id: 2345,
-        name: 'Hamburguer',
+        name: 'Hamburger',
         ingredients: [ 'beef', 'cheese', 'lettuce' ],
         price: 12,
         emoji: '🍔',

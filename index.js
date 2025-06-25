@@ -41,7 +41,7 @@ function render() {
             <div class="item-description-container">
                 <h3 class="item-name">${item.name}</h3>
                 <p class="item-ingredients">${item.ingredients.join(', ')}</p>
-                <p class="item-price">$ ${item.price}</p>
+                <p class="item-card-price">$ ${item.price}</p>
             </div>
             <button class="item-add-btn" data-add-item="${item.id}">+</button>
             
@@ -64,9 +64,11 @@ function orderRender() {
                     <span>${item.name}</span>
                 </div>
                 <div class="order-item-button-container">
-                    <button class="item-remove-btn ${item.orderCount < 2 ? "hidden" : ""}" data-remove-item="${item.id}">-</button>
+                    <button class="order-btn order-btn-remove ${item.orderCount < 2 ? "hidden" : ""}" data-remove-item="${item.id}">-</button>
                     
-                    <button data-remove-all-items="${item.id}">remove</button>
+                    <button class="order-btn order-btn-trash" data-remove-all-items="${item.id}">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
                 </div>
                 <span class="item-price">$ ${item.price * item.orderCount}</span>
             </li>
