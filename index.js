@@ -40,9 +40,10 @@ function orderRender() {
     const orderHTML = orderedItems.map((item) => {
         return `
             <li class="order-item">
+                <span>${item.orderCount} x</span> 
                 <span>${item.name}</span>
                 <button data-remove="${item.id}">remove</button>
-                <span>${item.price}</span>
+                <span>${item.price * item.orderCount}</span>
             </li>
         `
     }).join('')
@@ -50,14 +51,30 @@ function orderRender() {
     orderListContainer.innerHTML = orderHTML
     
     // order price
-    const orderPrice = orderedItems.reduce((total, item) => item.price + total, 0)
-    orderTotalContainer.innerHTML = `<span>Total price: </span><span>${orderPrice}</span>`
+    const orderPrice = orderedItems.reduce((total, item) => (item.price * item.orderCount) + total, 0)
+    orderTotalContainer.innerHTML = `
+        <hr>
+        <div class="total-line">
+            <span>Total price:</span>
+            <span>$${orderPrice}</span>
+        </div>
+    `
     console.log(orderPrice)
 }
 
-function addItem(item) {
-    orderedItems.push(item)
-    console.log(orderedItems)
+function addItem(itemFromMenu) {
+    const existingOrderItem = orderedItems.find(orderedItem => orderedItem.id === itemFromMenu.id)
+
+    if (existingOrderItem) {
+        existingOrderItem.orderCount++
+    } else {
+        const newItemForOrder = {
+            ...itemFromMenu,
+            orderCount: 1
+        }
+        orderedItems.push(newItemForOrder)
+    }
+
     orderRender()
 }
 
