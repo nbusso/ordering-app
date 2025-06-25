@@ -25,7 +25,29 @@
                     Total price: 
                 </div>
             </div>
-            <button>Complete Order</button>
+            <button id="complete-order-btn">Complete Order</button>
+        </section>
+        <section class="modal hidden" id="modal">
+            <h2 class="modal-title">Enter card details</h2>
+            <form>
+                <input 
+                    type="text"
+                    name="name" 
+                    placeholder="Enter your name"
+                >
+                <input 
+                    type="number"
+                    name="card-number" 
+                    placeholder="Enter card number"
+                    max="12"
+                >
+                <input 
+                    type="number"
+                    name="card-cvv" 
+                    placeholder="Enter CVV"
+                >
+                <button type="submit">Pay</button>
+            </form>
         </section>
     </main>
     <script type="module" src="./index.js"></script>

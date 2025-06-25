@@ -3,12 +3,30 @@ import { menuList } from "./data/menu.js";
 const menuListContainer = document.getElementById('menu-list')
 const orderListContainer = document.getElementById('order-list')
 const orderTotalContainer = document.getElementById('order-total')
+const modalContainer = document.getElementById('modal')
+
+let orderedItems = []
 
 document.addEventListener('click', function(e) {
     if (e.target.dataset.addItem) {
-        const itemToAdd = menuList.filter((item) => item.id === Number(e.target.dataset.addItem))
-        addItem(itemToAdd[0])
+        const itemToAdd = menuList.find((item) => item.id === Number(e.target.dataset.addItem))
+        addItem(itemToAdd)
     }
+
+    if (e.target.id === 'complete-order-btn') {
+        modalContainer.classList.toggle('hidden')
+    }
+
+    if (e.target.dataset.removeItem) {
+        const itemToRemove = orderedItems.find((item) => item.id === Number(e.target.dataset.removeItem))
+        removeItem(itemToRemove)
+    }
+
+    if (e.target.dataset.removeAllItems) {
+        const itemToRemove = menuList.find((item) => item.id === Number(e.target.dataset.removeAllItems))
+        removeAllItems(itemToRemove)
+    }
+
 })
 
 function render() {
@@ -23,27 +41,34 @@ function render() {
             <div class="item-description-container">
                 <h3 class="item-name">${item.name}</h3>
                 <p class="item-ingredients">${item.ingredients.join(', ')}</p>
-                <p class="item-price">${item.price}</p>
+                <p class="item-price">$ ${item.price}</p>
             </div>
-            <button class="item-add-btn" id="item-add-btn" data-add-item="${item.id}">+</button>
+            <button class="item-add-btn" data-add-item="${item.id}">+</button>
+            
         </li>
         `
     }).join('')
-
+   
     menuListContainer.innerHTML = menuHTML
 }
 
-const orderedItems = []
+
 
 function orderRender() {
     // order items
     const orderHTML = orderedItems.map((item) => {
         return `
             <li class="order-item">
-                <span>${item.orderCount} x</span> 
-                <span>${item.name}</span>
-                <button data-remove="${item.id}">remove</button>
-                <span>${item.price * item.orderCount}</span>
+                <div class="order-info">
+                    <span>${item.orderCount} x</span> 
+                    <span>${item.name}</span>
+                </div>
+                <div class="order-item-button-container">
+                    <button class="item-remove-btn ${item.orderCount < 2 ? "hidden" : ""}" data-remove-item="${item.id}">-</button>
+                    
+                    <button data-remove-all-items="${item.id}">remove</button>
+                </div>
+                <span class="item-price">$ ${item.price * item.orderCount}</span>
             </li>
         `
     }).join('')
@@ -75,6 +100,25 @@ function addItem(itemFromMenu) {
         orderedItems.push(newItemForOrder)
     }
 
+    orderRender()
+}
+
+function removeItem(itemFromOrder) {
+    const existingOrderItem = orderedItems.find((item) => item.id === itemFromOrder.id)
+
+    if (existingOrderItem) {
+        existingOrderItem.orderCount--
+    }
+
+    if (existingOrderItem.orderCount <= 0) {
+        orderedItems = orderedItems.filter((item) => item.id != itemFromOrder.id)
+    }
+    
+    orderRender()
+}
+
+function removeAllItems(itemFromOrder) {
+    orderedItems = orderedItems.filter((item) => item.id != itemFromOrder.id)
     orderRender()
 }
 
