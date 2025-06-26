@@ -5,6 +5,10 @@ const orderListContainer = document.getElementById('order-list')
 const orderSection = document.getElementById('order-section')
 const orderTotalContainer = document.getElementById('order-total')
 const modalContainer = document.getElementById('modal')
+const modalOverlay = document.getElementById('modal-overlay')
+const paymentForm = document.getElementById('payment-form')
+const paymentBtn = document.getElementById('payment-btn')
+
 
 let orderedItems = []
 
@@ -15,7 +19,8 @@ document.addEventListener('click', function(e) {
     }
 
     if (e.target.id === 'complete-order-btn') {
-        modalContainer.classList.toggle('hidden')
+        modalContainer.classList.remove('hidden')
+        modalOverlay.classList.remove('hidden')
     }
 
     if (e.target.dataset.removeItem) {
@@ -27,7 +32,15 @@ document.addEventListener('click', function(e) {
         const itemToRemove = menuList.find((item) => item.id === Number(e.target.dataset.removeAllItems))
         removeAllItems(itemToRemove)
     }
+})
 
+paymentForm.addEventListener('submit', function(e) {
+    e.preventDefault()
+
+
+
+    modalContainer.classList.add('hidden')
+    modalOverlay.classList.add('hidden')
 })
 
 function render() {

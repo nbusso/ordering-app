@@ -26,26 +26,42 @@
             </div>
             <button class="complete-order-btn" id="complete-order-btn">Complete Order</button>
         </section>
+
+        <div class="modal-overlay hidden" id="modal-overlay"></div>
+        <button id="open-modal-btn">Open Modal (Test)</button>
+
         <section class="modal hidden" id="modal">
             <h2 class="modal-title">Enter card details</h2>
-            <form>
+            <form id="payment-form">
                 <input 
+                    id="form-name"
                     type="text"
                     name="name" 
                     placeholder="Enter your name"
-                >
+                    minlength="2"
+                    maxlength="30"
+                    >
                 <input 
-                    type="number"
-                    name="card-number" 
+                    id="form-credit-card"
+                    type="tel"
+                    inputmode="numeric"
+                    pattern="[0-9\s]{13,19}"
+                    autocomplete="cc-number"
+                    name="form-credit-card" 
                     placeholder="Enter card number"
-                    max="12"
+                    maxlength="19"
                 >
                 <input 
-                    type="number"
-                    name="card-cvv" 
+                    id="form-card-cvv"
+                    form="cvv"
+                    type="tel"
+                    inputmode="numeric"
+                    name="form-card-cvv" 
                     placeholder="Enter CVV"
+                    minlength="3"
+                    maxlength="3"
                 >
-                <button type="submit">Pay</button>
+                <button type="submit" id="payment-btn">Pay</button>
             </form>
         </section>
     </main>

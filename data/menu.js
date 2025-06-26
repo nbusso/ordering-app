@@ -22,5 +22,5 @@ export const menuList = [
         price: 12,
         emoji: '🍺',
         orderCount: 0
-    },
+    }
 ]
