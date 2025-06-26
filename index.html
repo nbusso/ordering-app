@@ -28,7 +28,6 @@
         </section>
 
         <div class="modal-overlay hidden" id="modal-overlay"></div>
-        <button id="open-modal-btn">Open Modal (Test)</button>
 
         <section class="modal hidden" id="modal">
             <h2 class="modal-title">Enter card details</h2>
@@ -40,6 +39,7 @@
                     placeholder="Enter your name"
                     minlength="2"
                     maxlength="30"
+                    required
                     >
                 <input 
                     id="form-credit-card"
@@ -50,6 +50,7 @@
                     name="form-credit-card" 
                     placeholder="Enter card number"
                     maxlength="19"
+                    required
                 >
                 <input 
                     id="form-card-cvv"
@@ -60,6 +61,7 @@
                     placeholder="Enter CVV"
                     minlength="3"
                     maxlength="3"
+                    required
                 >
                 <button type="submit" id="payment-btn">Pay</button>
             </form>
